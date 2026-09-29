@@ -1,372 +1,181 @@
-/****************************************************
- * USELESS PROJECTS — FRONTEND
- ****************************************************/
-
-
-/*
- * IMPORTANT
- *
- * Replace this URL with your deployed
- * Google Apps Script Web App URL.
- */
+// ============================================
+// GOOGLE APPS SCRIPT URL
+// ============================================
 
 const API_URL =
   "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 
-/* =========================================
-   STATE
-========================================= */
+// ============================================
+// ELEMENTS
+// ============================================
 
-let currentStep = 1;
+const form =
+  document.getElementById(
+    "uselessForm"
+  );
 
-const totalSteps = 4;
+const victimsContainer =
+  document.getElementById(
+    "victimsContainer"
+  );
+
+const addVictimButton =
+  document.getElementById(
+    "addVictim"
+  );
+
+const disaster =
+  document.getElementById(
+    "disaster"
+  );
+
+const characterCount =
+  document.getElementById(
+    "characterCount"
+  );
+
+const success =
+  document.getElementById(
+    "success"
+  );
+
+const submissionId =
+  document.getElementById(
+    "submissionId"
+  );
+
+const submitButton =
+  document.getElementById(
+    "submitButton"
+  );
+
+
+// ============================================
+// VICTIM COUNT
+// ============================================
 
 let victimCount = 1;
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+// ============================================
+// ADD VICTIM
+// ============================================
 
-const form =
-  document.getElementById("uselessForm");
+addVictimButton.addEventListener(
+  "click",
+  function () {
 
-const steps =
-  document.querySelectorAll(".step");
+    if (victimCount >= 3) {
 
-const progressFill =
-  document.getElementById("progressFill");
-
-const stepCounter =
-  document.getElementById("stepCounter");
-
-const progressText =
-  document.getElementById("progressText");
-
-const victimsContainer =
-  document.getElementById("victimsContainer");
-
-const addVictimButton =
-  document.getElementById("addVictimButton");
-
-const successScreen =
-  document.getElementById("successScreen");
-
-const submissionId =
-  document.getElementById("submissionId");
-
-const submitButton =
-  document.getElementById("submitButton");
-
-
-/* =========================================
-   STEP LABELS
-========================================= */
-
-const stepLabels = [
-
-  "BEGIN THE NONSENSE",
-
-  "ASSEMBLE THE VICTIMS",
-
-  "CREATE THE DISASTER",
-
-  "ACCEPT THE CONSEQUENCES"
-
-];
-
-
-/* =========================================
-   UPDATE STEP
-========================================= */
-
-function updateStep() {
-
-  steps.forEach(step => {
-
-    const number =
-      Number(step.dataset.step);
-
-    step.classList.toggle(
-      "active",
-      number === currentStep
-    );
-
-  });
-
-
-  const progress =
-    (currentStep / totalSteps) * 100;
-
-
-  progressFill.style.width =
-    progress + "%";
-
-
-  stepCounter.textContent =
-    "STEP 0" +
-    currentStep +
-    " / 04";
-
-
-  progressText.textContent =
-    stepLabels[currentStep - 1];
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
-}
-
-
-/* =========================================
-   NEXT STEP
-========================================= */
-
-function nextStep() {
-
-  if (!validateCurrentStep()) {
-    return;
-  }
-
-
-  if (currentStep < totalSteps) {
-
-    currentStep++;
-
-    updateStep();
-
-  }
-
-}
-
-
-/* =========================================
-   PREVIOUS STEP
-========================================= */
-
-function previousStep() {
-
-  if (currentStep > 1) {
-
-    currentStep--;
-
-    updateStep();
-
-  }
-
-}
-
-
-/* =========================================
-   VALIDATION
-========================================= */
-
-function validateCurrentStep() {
-
-  /* STEP 1 */
-
-  if (currentStep === 1) {
-
-    const name =
-      document
-        .getElementById("syndicateName")
-        .value
-        .trim();
-
-
-    if (!name) {
-
-      showError(
-        "Your silly syndicate needs a name."
+      alert(
+        "THREE HUMANS IS ENOUGH."
       );
 
-      return false;
+      return;
 
     }
 
-  }
+
+    victimCount++;
 
 
-  /* STEP 2 */
-
-  if (currentStep === 2) {
-
-    const names =
-      document.querySelectorAll(
-        ".victim-name"
-      );
-
-    const regs =
-      document.querySelectorAll(
-        ".victim-reg"
-      );
+    const victim =
+      document.createElement("div");
 
 
-    for (let i = 0; i < names.length; i++) {
-
-      if (!names[i].value.trim()) {
-
-        showError(
-          "Victim " +
-          (i + 1) +
-          " needs a name."
-        );
-
-        names[i].focus();
-
-        return false;
-
-      }
+    victim.className =
+      "victim";
 
 
-      if (!regs[i].value.trim()) {
+    victim.innerHTML = `
 
-        showError(
-          "Victim " +
-          (i + 1) +
-          " needs a registration number."
-        );
+      <div class="victim-top">
 
-        regs[i].focus();
+        <span>
+          VICTIM 0${victimCount}
+        </span>
 
-        return false;
-
-      }
-
-    }
-
-  }
-
-
-  /* STEP 3 */
-
-  if (currentStep === 3) {
-
-    const disaster =
-      document
-        .getElementById("disaster")
-        .value
-        .trim();
-
-
-    if (!disaster) {
-
-      showError(
-        "You haven't described your disaster yet."
-      );
-
-      return false;
-
-    }
-
-  }
-
-
-  return true;
-
-}
-
-
-/* =========================================
-   ADD VICTIM
-========================================= */
-
-function addVictim() {
-
-  if (victimCount >= 3) {
-
-    showError(
-      "Three victims is enough. We are not monsters."
-    );
-
-    return;
-
-  }
-
-
-  victimCount++;
-
-
-  const card =
-    document.createElement("div");
-
-
-  card.className =
-    "victim-card";
-
-
-  card.innerHTML = `
-
-    <div class="victim-header">
-
-      <span>
-        VICTIM 0${victimCount}
-      </span>
-
-    </div>
-
-
-    <div class="victim-inputs">
-
-      <div>
-
-        <label>
-          NAME
-        </label>
-
-        <input
-          type="text"
-          class="victim-name"
-          placeholder="Their unfortunate name"
-          maxlength="80"
-        >
+        <span>
+          REQUIRED
+        </span>
 
       </div>
 
 
-      <div>
+      <div class="victim-fields">
 
-        <label>
-          REGISTRATION NO.
-        </label>
+        <div class="field">
 
-        <input
-          type="text"
-          class="victim-reg"
-          placeholder="Their official identity"
-          maxlength="30"
-        >
+          <label>
+            NAME
+          </label>
+
+          <input
+            type="text"
+            class="victim-name"
+            placeholder="Who are you?"
+            maxlength="80"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            REGISTRATION NO.
+          </label>
+
+          <input
+            type="text"
+            class="victim-reg"
+            placeholder="Official identification"
+            maxlength="30"
+          >
+
+        </div>
 
       </div>
 
-    </div>
-
-  `;
+    `;
 
 
-  victimsContainer.appendChild(card);
+    victimsContainer.appendChild(
+      victim
+    );
 
 
-  if (victimCount >= 3) {
+    if (victimCount >= 3) {
 
-    addVictimButton.style.display =
-      "none";
+      addVictimButton.style.display =
+        "none";
+
+    }
 
   }
+);
 
-}
+
+// ============================================
+// CHARACTER COUNT
+// ============================================
+
+disaster.addEventListener(
+  "input",
+  function () {
+
+    characterCount.textContent =
+      this.value.length +
+      " / 1500";
+
+  }
+);
 
 
-/* =========================================
-   COLLECT VICTIMS
-========================================= */
+// ============================================
+// COLLECT VICTIMS
+// ============================================
 
 function collectVictims() {
 
@@ -375,7 +184,8 @@ function collectVictims() {
       ".victim-name"
     );
 
-  const regs =
+
+  const registrations =
     document.querySelectorAll(
       ".victim-reg"
     );
@@ -384,7 +194,11 @@ function collectVictims() {
   const victims = [];
 
 
-  for (let i = 0; i < names.length; i++) {
+  for (
+    let i = 0;
+    i < names.length;
+    i++
+  ) {
 
     victims.push({
 
@@ -392,7 +206,7 @@ function collectVictims() {
         names[i].value.trim(),
 
       regNo:
-        regs[i].value.trim()
+        registrations[i].value.trim()
 
     });
 
@@ -404,36 +218,118 @@ function collectVictims() {
 }
 
 
-/* =========================================
-   SUBMIT
-========================================= */
+// ============================================
+// VALIDATE
+// ============================================
+
+function validateForm() {
+
+  const syndicate =
+    document
+      .getElementById(
+        "syndicateName"
+      )
+      .value
+      .trim();
+
+
+  if (!syndicate) {
+
+    alert(
+      "NAME YOUR SILLY SYNDICATE FIRST."
+    );
+
+    return false;
+
+  }
+
+
+  const victims =
+    collectVictims();
+
+
+  for (
+    let i = 0;
+    i < victims.length;
+    i++
+  ) {
+
+    if (!victims[i].name) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS A NAME."
+      );
+
+      return false;
+
+    }
+
+
+    if (!victims[i].regNo) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS A REGISTRATION NUMBER."
+      );
+
+      return false;
+
+    }
+
+  }
+
+
+  if (!disaster.value.trim()) {
+
+    alert(
+      "YOU HAVEN'T CREATED A DISASTER YET."
+    );
+
+    return false;
+
+  }
+
+
+  const fate =
+    document
+      .getElementById(
+        "fateAccepted"
+      )
+      .checked;
+
+
+  if (!fate) {
+
+    alert(
+      "YOU MUST ACCEPT YOUR FATE."
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+// ============================================
+// SUBMIT
+// ============================================
 
 form.addEventListener(
   "submit",
-  async function(event) {
+  async function (event) {
 
     event.preventDefault();
 
 
-    if (!validateCurrentStep()) {
+    if (!validateForm()) {
       return;
-    }
-
-
-    const fate =
-      document
-        .getElementById("fateAccepted")
-        .checked;
-
-
-    if (!fate) {
-
-      showError(
-        "You must accept your fate."
-      );
-
-      return;
-
     }
 
 
@@ -441,7 +337,9 @@ form.addEventListener(
 
       syndicateName:
         document
-          .getElementById("syndicateName")
+          .getElementById(
+            "syndicateName"
+          )
           .value
           .trim(),
 
@@ -449,10 +347,7 @@ form.addEventListener(
         collectVictims(),
 
       disaster:
-        document
-          .getElementById("disaster")
-          .value
-          .trim(),
+        disaster.value.trim(),
 
       fateAccepted:
         true
@@ -465,10 +360,26 @@ form.addEventListener(
 
 
     submitButton.textContent =
-      "SUBMITTING YOUR POOR DECISION...";
+      "RECORDING YOUR POOR DECISION...";
 
 
     try {
+
+      /*
+       * URLSearchParams keeps this request
+       * simple and avoids unnecessary CORS
+       * preflight requests.
+       */
+
+      const body =
+        new URLSearchParams();
+
+
+      body.append(
+        "payload",
+        JSON.stringify(payload)
+      );
+
 
       const response =
         await fetch(
@@ -477,15 +388,7 @@ form.addEventListener(
 
             method: "POST",
 
-            headers: {
-
-              "Content-Type":
-                "text/plain;charset=utf-8"
-
-            },
-
-            body:
-              JSON.stringify(payload)
+            body: body
 
           }
         );
@@ -515,9 +418,9 @@ form.addEventListener(
       console.error(error);
 
 
-      showError(
-        error.message ||
-        "Something went wrong."
+      alert(
+        "THE USELESS MACHINE BROKE.\n\n" +
+        error.message
       );
 
 
@@ -526,7 +429,7 @@ form.addEventListener(
 
 
       submitButton.textContent =
-        "ACCEPT FATE";
+        "SUBMIT THIS POINTLESS DECISION";
 
     }
 
@@ -534,9 +437,9 @@ form.addEventListener(
 );
 
 
-/* =========================================
-   SUCCESS
-========================================= */
+// ============================================
+// SUCCESS
+// ============================================
 
 function showSuccess(id) {
 
@@ -544,19 +447,13 @@ function showSuccess(id) {
     "none";
 
 
-  document
-    .querySelector(".progress-container")
-    .style.display =
-    "none";
+  success.classList.add(
+    "show"
+  );
 
 
   submissionId.textContent =
     id;
-
-
-  successScreen.classList.add(
-    "show"
-  );
 
 
   window.scrollTo({
@@ -568,73 +465,3 @@ function showSuccess(id) {
   });
 
 }
-
-
-/* =========================================
-   ERROR
-========================================= */
-
-function showError(message) {
-
-  alert(
-    "ERROR:\n\n" + message
-  );
-
-}
-
-
-/* =========================================
-   CHARACTER COUNTERS
-========================================= */
-
-const syndicateInput =
-  document.getElementById(
-    "syndicateName"
-  );
-
-
-const syndicateCounter =
-  document.getElementById(
-    "syndicateCounter"
-  );
-
-
-syndicateInput.addEventListener(
-  "input",
-  function() {
-
-    syndicateCounter.textContent =
-      this.value.length;
-
-  }
-);
-
-
-const disasterInput =
-  document.getElementById(
-    "disaster"
-  );
-
-
-const disasterCounter =
-  document.getElementById(
-    "disasterCounter"
-  );
-
-
-disasterInput.addEventListener(
-  "input",
-  function() {
-
-    disasterCounter.textContent =
-      this.value.length;
-
-  }
-);
-
-
-/* =========================================
-   INITIALIZE
-========================================= */
-
-updateStep();
