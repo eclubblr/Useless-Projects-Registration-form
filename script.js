@@ -11,44 +11,28 @@ const API_URL =
 // ============================================
 
 const form =
-  document.getElementById(
-    "uselessForm"
-  );
+  document.getElementById("uselessForm");
 
 const victimsContainer =
-  document.getElementById(
-    "victimsContainer"
-  );
+  document.getElementById("victimsContainer");
 
 const addVictimButton =
-  document.getElementById(
-    "addVictim"
-  );
+  document.getElementById("addVictim");
 
 const disaster =
-  document.getElementById(
-    "disaster"
-  );
+  document.getElementById("disaster");
 
 const characterCount =
-  document.getElementById(
-    "characterCount"
-  );
+  document.getElementById("characterCount");
 
 const success =
-  document.getElementById(
-    "success"
-  );
+  document.getElementById("success");
 
 const submissionId =
-  document.getElementById(
-    "submissionId"
-  );
+  document.getElementById("submissionId");
 
 const submitButton =
-  document.getElementById(
-    "submitButton"
-  );
+  document.getElementById("submitButton");
 
 
 // ============================================
@@ -76,17 +60,13 @@ addVictimButton.addEventListener(
 
     }
 
-
     victimCount++;
-
 
     const victim =
       document.createElement("div");
 
-
     victim.className =
       "victim";
-
 
     victim.innerHTML = `
 
@@ -101,7 +81,6 @@ addVictimButton.addEventListener(
         </span>
 
       </div>
-
 
       <div class="victim-fields">
 
@@ -120,7 +99,6 @@ addVictimButton.addEventListener(
 
         </div>
 
-
         <div class="field">
 
           <label>
@@ -135,7 +113,6 @@ addVictimButton.addEventListener(
           >
 
         </div>
-
 
         <div class="field">
 
@@ -152,7 +129,6 @@ addVictimButton.addEventListener(
           >
 
         </div>
-
 
         <div class="field">
 
@@ -173,11 +149,9 @@ addVictimButton.addEventListener(
 
     `;
 
-
     victimsContainer.appendChild(
       victim
     );
-
 
     if (victimCount >= 3) {
 
@@ -217,27 +191,22 @@ function collectVictims() {
       ".victim-name"
     );
 
-
   const registrations =
     document.querySelectorAll(
       ".victim-reg"
     );
-
 
   const mobiles =
     document.querySelectorAll(
       ".victim-mobile"
     );
 
-
   const emails =
     document.querySelectorAll(
       ".victim-email"
     );
 
-
   const victims = [];
-
 
   for (
     let i = 0;
@@ -263,7 +232,6 @@ function collectVictims() {
 
   }
 
-
   return victims;
 
 }
@@ -277,12 +245,9 @@ function validateForm() {
 
   const syndicate =
     document
-      .getElementById(
-        "syndicateName"
-      )
+      .getElementById("syndicateName")
       .value
       .trim();
-
 
   if (!syndicate) {
 
@@ -356,7 +321,6 @@ function validateForm() {
         ""
       );
 
-
     if (mobile.length !== 10) {
 
       alert(
@@ -387,7 +351,6 @@ function validateForm() {
 
     const emailPattern =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
     if (
       !emailPattern.test(
@@ -425,11 +388,8 @@ function validateForm() {
 
   const fate =
     document
-      .getElementById(
-        "fateAccepted"
-      )
+      .getElementById("fateAccepted")
       .checked;
-
 
   if (!fate) {
 
@@ -458,18 +418,20 @@ form.addEventListener(
     event.preventDefault();
 
 
+    // VALIDATE
+
     if (!validateForm()) {
       return;
     }
 
 
+    // CREATE PAYLOAD
+
     const payload = {
 
       syndicateName:
         document
-          .getElementById(
-            "syndicateName"
-          )
+          .getElementById("syndicateName")
           .value
           .trim(),
 
@@ -485,9 +447,10 @@ form.addEventListener(
     };
 
 
+    // DISABLE BUTTON
+
     submitButton.disabled =
       true;
-
 
     submitButton.textContent =
       "RECORDING YOUR POOR DECISION...";
@@ -495,15 +458,12 @@ form.addEventListener(
 
     try {
 
-      /*
-       * URLSearchParams keeps this request
-       * simple and avoids unnecessary CORS
-       * preflight requests.
-       */
+      // ========================================
+      // PREPARE REQUEST
+      // ========================================
 
       const body =
         new URLSearchParams();
-
 
       body.append(
         "payload",
@@ -511,22 +471,68 @@ form.addEventListener(
       );
 
 
+      // ========================================
+      // SEND TO GOOGLE APPS SCRIPT
+      // ========================================
+
       const response =
         await fetch(
           API_URL,
           {
-
             method: "POST",
-
             body: body
-
           }
         );
 
 
-      const result =
-        await response.json();
+      // ========================================
+      // READ RESPONSE AS TEXT FIRST
+      // ========================================
+      //
+      // We intentionally do NOT use
+      // response.json() directly.
+      //
+      // This lets us see what Google actually
+      // returned if something goes wrong.
+      // ========================================
 
+      const responseText =
+        await response.text();
+
+      console.log(
+        "RAW GOOGLE RESPONSE:",
+        responseText
+      );
+
+
+      // ========================================
+      // CONVERT RESPONSE TO JSON
+      // ========================================
+
+      let result;
+
+      try {
+
+        result =
+          JSON.parse(responseText);
+
+      } catch (parseError) {
+
+        console.error(
+          "GOOGLE RETURNED:",
+          responseText
+        );
+
+        throw new Error(
+          "Google Apps Script returned an invalid response."
+        );
+
+      }
+
+
+      // ========================================
+      // CHECK RESULT
+      // ========================================
 
       if (!result.success) {
 
@@ -538,6 +544,10 @@ form.addEventListener(
       }
 
 
+      // ========================================
+      // SUCCESS
+      // ========================================
+
       showSuccess(
         result.submissionId
       );
@@ -545,7 +555,10 @@ form.addEventListener(
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "SUBMISSION ERROR:",
+        error
+      );
 
 
       alert(
@@ -554,9 +567,10 @@ form.addEventListener(
       );
 
 
+      // ENABLE BUTTON AGAIN
+
       submitButton.disabled =
         false;
-
 
       submitButton.textContent =
         "SUBMIT THIS POINTLESS DECISION";
@@ -576,15 +590,12 @@ function showSuccess(id) {
   form.style.display =
     "none";
 
-
   success.classList.add(
     "show"
   );
 
-
   submissionId.textContent =
     id;
-
 
   window.scrollTo({
 
