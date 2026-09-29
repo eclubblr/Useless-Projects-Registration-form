@@ -3,7 +3,7 @@
 // ============================================
 
 const API_URL =
-  "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+  "https://script.google.com/macros/s/AKfycbz_FnPEl1JG0QTA-t_fqYxr0MuSFv4JbqF5bd4tNNyl4g1CgwO0B6nqcFWoq_WBgc0T/exec";
 
 
 // ============================================
