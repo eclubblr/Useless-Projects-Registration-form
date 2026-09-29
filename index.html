@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -22,458 +23,529 @@
 
 <body>
 
-  <!-- =========================================
-       BACKGROUND
-  ========================================== -->
 
-  <div class="noise"></div>
+  <!-- BACKGROUND DECORATION -->
 
-  <div class="grid"></div>
-
-
-  <!-- =========================================
-       MAIN
-  ========================================== -->
-
-  <main class="container">
+  <div class="blob blob-one"></div>
+  <div class="blob blob-two"></div>
+  <div class="blob blob-three"></div>
 
 
-    <!-- HEADER -->
+  <!-- ========================================
+       PAGE
+  ========================================= -->
+
+  <main class="page">
+
+
+    <!-- TOP META -->
+
+    <div class="top-meta">
+
+      <span>
+        VDC
+        <small>VENTURE DEVELOPMENT CENTRE</small>
+      </span>
+
+      <span>
+        2026
+      </span>
+
+    </div>
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
 
     <header class="hero">
 
-      <div class="tiny-label">
-        VDC DIVISION OF QUESTIONABLE IDEAS
+      <div class="department-tag">
+        DEPARTMENT OF UNNECESSARY ENGINEERING
       </div>
 
+
       <h1>
-        USELESS<br>
-        PROJECTS
+
+        <span class="green">
+          USELESS
+        </span>
+
+        <span class="coral">
+          PROJECTS
+        </span>
+
       </h1>
 
-      <p class="hero-description">
-        A completely unnecessary competition
-        for people with entirely unnecessary ideas.
-      </p>
 
-      <div class="status">
-        <span class="status-dot"></span>
-        OFFICIALLY UNNECESSARY
+      <div class="hero-bottom">
+
+        <p>
+          Got an idea?
+          <br>
+
+          <strong>
+            Unfortunately, we want to hear it.
+          </strong>
+        </p>
+
+
+        <div class="stamp">
+
+          100%
+          <br>
+          USELESS
+
+        </div>
+
+      </div>
+
+
+      <div class="prototype-line">
+
+        <span>
+          COMPLETELY UNNECESSARY
+        </span>
+
+        <div class="line"></div>
+
+        <strong>
+          PROTOTYPE
+        </strong>
+
       </div>
 
     </header>
 
 
+    <!-- ========================================
+         FORM CARD
+    ========================================= -->
 
-    <!-- PROGRESS -->
+    <section class="form-wrapper">
 
-    <div class="progress-container">
 
-      <div class="progress-top">
+      <div class="form-card">
 
-        <span id="stepCounter">
-          STEP 01 / 04
-        </span>
 
-        <span id="progressText">
-          BEGIN THE NONSENSE
-        </span>
+        <form id="uselessForm">
 
-      </div>
 
-      <div class="progress-bar">
+          <!-- =================================
+               SECTION 01
+          ================================== -->
+
+          <section class="form-section">
+
+            <div class="section-number">
+              01
+            </div>
+
+
+            <div class="section-content">
+
+              <div class="mini-label">
+                STEP ONE / THIS IS IMPORTANT
+              </div>
+
+
+              <h2>
+
+                <span class="green">
+                  NAME YOUR
+                </span>
+
+                <span class="coral">
+                  SILLY SYNDICATE
+                </span>
+
+              </h2>
+
+
+              <p class="section-note">
+                Give your questionable operation a name.
+                Again. This is somehow important.
+              </p>
+
+
+              <div class="field">
+
+                <label>
+                  SILLY SYNDICATE NAME
+                </label>
+
+                <input
+                  id="syndicateName"
+                  type="text"
+                  maxlength="80"
+                  placeholder="Something unnecessarily intimidating"
+                >
+
+                <span class="field-note">
+                  make it unnecessarily serious
+                </span>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+
+          <!-- =================================
+               SECTION 02
+          ================================== -->
+
+          <section class="form-section">
+
+            <div class="section-number">
+              02
+            </div>
+
+
+            <div class="section-content">
+
+              <div class="mini-label">
+                STEP TWO / HUMAN RESOURCES
+              </div>
+
+
+              <h2>
+
+                <span class="green">
+                  ASSEMBLE
+                </span>
+
+                <span class="coral">
+                  YOUR VICTIMS
+                </span>
+
+              </h2>
+
+
+              <p class="section-note">
+                Because doing something useless alone
+                would be far too responsible.
+              </p>
+
+
+              <div id="victimsContainer">
+
+
+                <!-- VICTIM 01 -->
+
+                <div class="victim">
+
+                  <div class="victim-top">
+
+                    <span>
+                      VICTIM 01
+                    </span>
+
+                    <span>
+                      REQUIRED
+                    </span>
+
+                  </div>
+
+
+                  <div class="victim-fields">
+
+                    <div class="field">
+
+                      <label>
+                        NAME
+                      </label>
+
+                      <input
+                        type="text"
+                        class="victim-name"
+                        placeholder="Who are you?"
+                        maxlength="80"
+                      >
+
+                    </div>
+
+
+                    <div class="field">
+
+                      <label>
+                        REGISTRATION NO.
+                      </label>
+
+                      <input
+                        type="text"
+                        class="victim-reg"
+                        placeholder="Official identification"
+                        maxlength="30"
+                      >
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+              </div>
+
+
+              <button
+                type="button"
+                id="addVictim"
+                class="add-victim"
+              >
+
+                + ADD ANOTHER HUMAN
+
+              </button>
+
+
+              <div class="tiny-note">
+                Maximum 3 humans.
+                We have standards.
+              </div>
+
+            </div>
+
+          </section>
+
+
+
+          <!-- =================================
+               SECTION 03
+          ================================== -->
+
+          <section class="form-section">
+
+            <div class="section-number">
+              03
+            </div>
+
+
+            <div class="section-content">
+
+              <div class="mini-label">
+                STEP THREE / QUESTIONABLE THINKING
+              </div>
+
+
+              <h2>
+
+                <span class="green">
+                  DISASTER I AM
+                </span>
+
+                <span class="coral">
+                  PLANNING FOR
+                </span>
+
+              </h2>
+
+
+              <p class="section-note">
+                Tell us about the problem nobody asked
+                you to solve.
+              </p>
+
+
+              <div class="field textarea-field">
+
+                <label>
+                  CRAZY & ABSURD IDEA
+                </label>
+
+                <textarea
+                  id="disaster"
+                  maxlength="1500"
+                  placeholder="We have decided to build..."
+                ></textarea>
+
+                <span
+                  class="character-count"
+                  id="characterCount"
+                >
+                  0 / 1500
+                </span>
+
+              </div>
+
+
+              <div class="scribble">
+                THIS SOUNDS LIKE A BAD IDEA
+              </div>
+
+            </div>
+
+          </section>
+
+
+
+          <!-- =================================
+               SECTION 04
+          ================================== -->
+
+          <section class="form-section final-section">
+
+            <div class="section-number">
+              04
+            </div>
+
+
+            <div class="section-content">
+
+              <div class="mini-label">
+                FINAL STEP / NO TURNING BACK
+              </div>
+
+
+              <h2>
+
+                <span class="green">
+                  ACCEPT YOUR
+                </span>
+
+                <span class="coral">
+                  FATE
+                </span>
+
+              </h2>
+
+
+              <div class="fate-box">
+
+                <label class="fate-label">
+
+                  <input
+                    type="checkbox"
+                    id="fateAccepted"
+                  >
+
+                  <span class="fake-checkbox"></span>
+
+                  <span class="fate-text">
+
+                    I understand that this project
+                    has absolutely no reason to exist
+                    and I accept full responsibility
+                    for my questionable decisions.
+
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <button
+                type="submit"
+                id="submitButton"
+                class="submit-button"
+              >
+
+                SUBMIT THIS POINTLESS DECISION
+
+              </button>
+
+
+              <div class="submit-note">
+
+                NO REFUNDS · NO REGRETS · PROBABLY NO PURPOSE
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+        </form>
+
+
+        <!-- =================================
+             SUCCESS
+        ================================== -->
 
         <div
-          class="progress-fill"
-          id="progressFill"
-        ></div>
+          id="success"
+          class="success"
+        >
 
-      </div>
-
-    </div>
-
-
-
-    <!-- FORM -->
-
-    <form id="uselessForm">
-
-
-      <!-- =====================================
-           STEP 1
-      ====================================== -->
-
-      <section
-        class="step active"
-        data-step="1"
-      >
-
-        <div class="step-number">
-          01
-        </div>
-
-        <h2>
-          NAME YOUR<br>
-          SILLY SYNDICATE
-        </h2>
-
-        <p class="instruction">
-          Every questionable operation needs
-          a questionable name.
-        </p>
-
-
-        <div class="input-wrapper">
-
-          <label>
-            SYNDICATE NAME
-          </label>
-
-          <input
-            type="text"
-            id="syndicateName"
-            name="syndicateName"
-            placeholder="e.g. The Potato Mafia"
-            maxlength="80"
-            autocomplete="off"
-          >
-
-          <div class="input-counter">
-            <span id="syndicateCounter">0</span> / 80
+          <div class="success-stamp">
+            APPROVED
           </div>
 
-        </div>
-
-
-        <button
-          type="button"
-          class="next-button"
-          onclick="nextStep()"
-        >
-          THIS SOUNDS STUPID →
-        </button>
-
-      </section>
-
-
-
-      <!-- =====================================
-           STEP 2
-      ====================================== -->
-
-      <section
-        class="step"
-        data-step="2"
-      >
-
-        <div class="step-number">
-          02
-        </div>
-
-        <h2>
-          ASSEMBLE<br>
-          YOUR VICTIMS
-        </h2>
-
-        <p class="instruction">
-          No useless project is complete
-          without innocent accomplices.
-        </p>
-
-
-        <div id="victimsContainer">
-
-
-          <!-- VICTIM 1 -->
-
-          <div class="victim-card">
-
-            <div class="victim-header">
-
-              <span>
-                VICTIM 01
-              </span>
-
-            </div>
-
-
-            <div class="victim-inputs">
-
-              <div>
-
-                <label>
-                  NAME
-                </label>
-
-                <input
-                  type="text"
-                  class="victim-name"
-                  placeholder="Their unfortunate name"
-                  maxlength="80"
-                >
-
-              </div>
-
-
-              <div>
-
-                <label>
-                  REGISTRATION NO.
-                </label>
-
-                <input
-                  type="text"
-                  class="victim-reg"
-                  placeholder="Their official identity"
-                  maxlength="30"
-                >
-
-              </div>
-
-            </div>
-
+          <div class="mini-label">
+            OFFICIAL USELESSNESS CONFIRMATION
           </div>
 
+          <h2>
 
-        </div>
-
-
-        <button
-          type="button"
-          class="add-victim"
-          id="addVictimButton"
-          onclick="addVictim()"
-        >
-          + ADD ANOTHER VICTIM
-        </button>
-
-
-        <div class="button-row">
-
-          <button
-            type="button"
-            class="back-button"
-            onclick="previousStep()"
-          >
-            ← BACK
-          </button>
-
-          <button
-            type="button"
-            class="next-button"
-            onclick="nextStep()"
-          >
-            CONTINUE THE DAMAGE →
-          </button>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================
-           STEP 3
-      ====================================== -->
-
-      <section
-        class="step"
-        data-step="3"
-      >
-
-        <div class="step-number">
-          03
-        </div>
-
-        <h2>
-          DISASTER I AM<br>
-          PLANNING FOR
-        </h2>
-
-        <p class="instruction">
-          Describe the problem you absolutely
-          did not need to solve.
-        </p>
-
-
-        <div class="input-wrapper">
-
-          <label>
-            YOUR ABSURD IDEA
-          </label>
-
-          <textarea
-            id="disaster"
-            name="disaster"
-            placeholder="We are going to build..."
-            maxlength="1000"
-          ></textarea>
-
-
-          <div class="textarea-counter">
-
-            <span id="disasterCounter">
-              0
+            <span class="green">
+              YOU
             </span>
 
-            / 1000
+            <span class="coral">
+              DID IT.
+            </span>
 
-          </div>
+          </h2>
 
-        </div>
-
-
-        <div class="button-row">
-
-          <button
-            type="button"
-            class="back-button"
-            onclick="previousStep()"
-          >
-            ← BACK
-          </button>
-
-          <button
-            type="button"
-            class="next-button"
-            onclick="nextStep()"
-          >
-            THIS WILL END WELL →
-          </button>
-
-        </div>
-
-      </section>
+          <p>
+            Against all reasonable expectations,
+            your useless project has been successfully
+            registered.
+          </p>
 
 
-
-      <!-- =====================================
-           STEP 4
-      ====================================== -->
-
-      <section
-        class="step"
-        data-step="4"
-      >
-
-        <div class="step-number">
-          04
-        </div>
-
-        <h2>
-          ACCEPT<br>
-          YOUR FATE
-        </h2>
-
-        <p class="instruction">
-          By continuing, you acknowledge that
-          this idea probably should not exist.
-        </p>
-
-
-        <div class="fate-box">
-
-          <label class="checkbox-label">
-
-            <input
-              type="checkbox"
-              id="fateAccepted"
-            >
-
-            <span class="custom-checkbox"></span>
+          <div class="submission-id">
 
             <span>
-              I ACCEPT MY FATE AND TAKE FULL
-              RESPONSIBILITY FOR THIS USELESS IDEA.
+              USELESS PROJECT ID
             </span>
 
-          </label>
+            <strong id="submissionId">
+              USP-2026-0000
+            </strong>
+
+          </div>
+
+
+          <div class="success-footer">
+            THE WORLD HAS BEEN NOTIFIED.
+            NOTHING USEFUL WILL HAPPEN.
+          </div>
 
         </div>
 
-
-        <div class="button-row">
-
-          <button
-            type="button"
-            class="back-button"
-            onclick="previousStep()"
-          >
-            ← BACK
-          </button>
-
-          <button
-            type="submit"
-            class="submit-button"
-            id="submitButton"
-          >
-            ACCEPT FATE
-          </button>
-
-        </div>
-
-      </section>
-
-
-    </form>
-
-
-
-    <!-- =====================================
-         SUCCESS SCREEN
-    ====================================== -->
-
-    <section
-      id="successScreen"
-      class="success-screen"
-    >
-
-      <div class="success-symbol">
-        ✓
-      </div>
-
-      <div class="tiny-label">
-        OFFICIAL CONFIRMATION
-      </div>
-
-      <h2>
-        YOU<br>
-        DID IT.
-      </h2>
-
-      <p>
-        Against all reasonable expectations,
-        your useless project has been registered.
-      </p>
-
-
-      <div class="submission-card">
-
-        <span>
-          YOUR USELESS ID
-        </span>
-
-        <strong id="submissionId">
-          USP-0000-0000
-        </strong>
-
-      </div>
-
-
-      <div class="success-message">
-
-        The world has been notified.
-        Nothing useful will happen.
 
       </div>
 
     </section>
 
 
+    <!-- FOOTER -->
+
+    <footer>
+
+      <span>
+        VDC · GITAM
+      </span>
+
+      <span>
+        DEPARTMENT OF UNNECESSARY ENGINEERING
+      </span>
+
+      <span>
+        PLEASE DO NOT MAKE THIS USEFUL
+      </span>
+
+    </footer>
+
+
   </main>
 
-
-  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 
