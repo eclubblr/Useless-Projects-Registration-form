@@ -136,6 +136,39 @@ addVictimButton.addEventListener(
 
         </div>
 
+
+        <div class="field">
+
+          <label>
+            MOBILE NUMBER
+          </label>
+
+          <input
+            type="tel"
+            class="victim-mobile"
+            placeholder="10-digit mobile number"
+            maxlength="10"
+            inputmode="numeric"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            EMAIL ID
+          </label>
+
+          <input
+            type="email"
+            class="victim-email"
+            placeholder="your@email.com"
+            maxlength="120"
+          >
+
+        </div>
+
       </div>
 
     `;
@@ -191,6 +224,18 @@ function collectVictims() {
     );
 
 
+  const mobiles =
+    document.querySelectorAll(
+      ".victim-mobile"
+    );
+
+
+  const emails =
+    document.querySelectorAll(
+      ".victim-email"
+    );
+
+
   const victims = [];
 
 
@@ -206,7 +251,13 @@ function collectVictims() {
         names[i].value.trim(),
 
       regNo:
-        registrations[i].value.trim()
+        registrations[i].value.trim(),
+
+      mobile:
+        mobiles[i].value.trim(),
+
+      email:
+        emails[i].value.trim()
 
     });
 
@@ -254,6 +305,8 @@ function validateForm() {
     i++
   ) {
 
+    // NAME
+
     if (!victims[i].name) {
 
       alert(
@@ -267,6 +320,8 @@ function validateForm() {
     }
 
 
+    // REGISTRATION NUMBER
+
     if (!victims[i].regNo) {
 
       alert(
@@ -279,8 +334,81 @@ function validateForm() {
 
     }
 
+
+    // MOBILE NUMBER
+
+    if (!victims[i].mobile) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS A MOBILE NUMBER."
+      );
+
+      return false;
+
+    }
+
+
+    const mobile =
+      victims[i].mobile.replace(
+        /\D/g,
+        ""
+      );
+
+
+    if (mobile.length !== 10) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS A VALID 10-DIGIT MOBILE NUMBER."
+      );
+
+      return false;
+
+    }
+
+
+    // EMAIL
+
+    if (!victims[i].email) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS AN EMAIL ID."
+      );
+
+      return false;
+
+    }
+
+
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if (
+      !emailPattern.test(
+        victims[i].email
+      )
+    ) {
+
+      alert(
+        "VICTIM " +
+        (i + 1) +
+        " NEEDS A VALID EMAIL ID."
+      );
+
+      return false;
+
+    }
+
   }
 
+
+  // DISASTER
 
   if (!disaster.value.trim()) {
 
@@ -292,6 +420,8 @@ function validateForm() {
 
   }
 
+
+  // FATE
 
   const fate =
     document
