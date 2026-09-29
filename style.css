@@ -1,0 +1,849 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #202020 0%,
+      #0d0d0d 45%,
+      #050505 100%
+    );
+
+  color: #f3f3f3;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.noise {
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.04;
+
+  z-index: 100;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+
+}
+
+
+.grid {
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.08;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container {
+
+  width: min(900px, 92%);
+
+  margin: auto;
+
+  padding:
+    70px 0
+    100px;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+
+  text-align: center;
+
+  margin-bottom: 80px;
+
+}
+
+
+.tiny-label {
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  color: #8d8d8d;
+
+  margin-bottom: 20px;
+
+}
+
+
+.hero h1 {
+
+  font-size:
+    clamp(70px, 15vw, 150px);
+
+  line-height: .78;
+
+  letter-spacing: -8px;
+
+  font-weight: 900;
+
+}
+
+
+.hero-description {
+
+  max-width: 520px;
+
+  margin:
+    35px auto 25px;
+
+  color: #999;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+}
+
+
+.status {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  border:
+    1px solid #333;
+
+  padding:
+    9px 15px;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #aaa;
+
+}
+
+
+.status-dot {
+
+  width: 7px;
+
+  height: 7px;
+
+  background: #fff;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px #fff;
+
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress-container {
+
+  margin-bottom: 70px;
+
+}
+
+
+.progress-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+
+  color: #777;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+}
+
+
+.progress-bar {
+
+  height: 2px;
+
+  background: #292929;
+
+}
+
+
+.progress-fill {
+
+  height: 100%;
+
+  width: 25%;
+
+  background: #fff;
+
+  transition:
+    width .4s ease;
+
+}
+
+
+/* =========================================
+   STEPS
+========================================= */
+
+.step {
+
+  display: none;
+
+  animation:
+    stepIn .45s ease;
+
+}
+
+
+.step.active {
+
+  display: block;
+
+}
+
+
+@keyframes stepIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+.step-number {
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+
+  color: #555;
+
+  margin-bottom: 20px;
+
+}
+
+
+.step h2 {
+
+  font-size:
+    clamp(45px, 8vw, 90px);
+
+  line-height: .85;
+
+  letter-spacing: -4px;
+
+  margin-bottom: 25px;
+
+}
+
+
+.instruction {
+
+  color: #777;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  max-width: 600px;
+
+  margin-bottom: 45px;
+
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.input-wrapper {
+
+  position: relative;
+
+  margin-bottom: 35px;
+
+}
+
+
+label {
+
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #777;
+
+  margin-bottom: 10px;
+
+}
+
+
+input[type="text"],
+textarea {
+
+  width: 100%;
+
+  border: none;
+
+  border-bottom:
+    1px solid #444;
+
+  background: transparent;
+
+  color: white;
+
+  padding:
+    15px 0;
+
+  outline: none;
+
+  font-size: 20px;
+
+  font-family: inherit;
+
+  transition:
+    border .2s ease;
+
+}
+
+
+input[type="text"]:focus,
+textarea:focus {
+
+  border-bottom-color: white;
+
+}
+
+
+input::placeholder,
+textarea::placeholder {
+
+  color: #444;
+
+}
+
+
+.input-counter,
+.textarea-counter {
+
+  position: absolute;
+
+  right: 0;
+
+  bottom: 10px;
+
+  font-size: 9px;
+
+  color: #555;
+
+  letter-spacing: 1px;
+
+}
+
+
+textarea {
+
+  min-height: 200px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+
+}
+
+
+/* =========================================
+   VICTIMS
+========================================= */
+
+.victim-card {
+
+  border:
+    1px solid #292929;
+
+  padding: 25px;
+
+  margin-bottom: 15px;
+
+  background:
+    rgba(255,255,255,.015);
+
+}
+
+
+.victim-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+
+  color: #777;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+}
+
+
+.victim-inputs {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 25px;
+
+}
+
+
+.add-victim {
+
+  width: 100%;
+
+  padding: 17px;
+
+  background: transparent;
+
+  border:
+    1px dashed #444;
+
+  color: #777;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  transition: .2s;
+
+  margin-bottom: 35px;
+
+}
+
+
+.add-victim:hover {
+
+  border-color: #888;
+
+  color: white;
+
+}
+
+
+/* =========================================
+   FATE
+========================================= */
+
+.fate-box {
+
+  border:
+    1px solid #333;
+
+  padding: 30px;
+
+  margin-bottom: 40px;
+
+}
+
+
+.checkbox-label {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 15px;
+
+  cursor: pointer;
+
+  color: #aaa;
+
+  line-height: 1.5;
+
+}
+
+
+.checkbox-label input {
+
+  position: absolute;
+
+  opacity: 0;
+
+}
+
+
+.custom-checkbox {
+
+  flex-shrink: 0;
+
+  width: 20px;
+
+  height: 20px;
+
+  border:
+    1px solid #555;
+
+  margin-top: 2px;
+
+}
+
+
+.checkbox-label input:checked
++ .custom-checkbox {
+
+  background: white;
+
+  box-shadow:
+    inset 0 0 0 4px #080808;
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+}
+
+
+.next-button,
+.submit-button {
+
+  border: none;
+
+  background: white;
+
+  color: black;
+
+  padding:
+    17px 25px;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: .2s;
+
+}
+
+
+.next-button:hover,
+.submit-button:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 10px 30px rgba(255,255,255,.1);
+
+}
+
+
+.back-button {
+
+  background: transparent;
+
+  color: #666;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+}
+
+
+.back-button:hover {
+
+  color: white;
+
+}
+
+
+/* =========================================
+   SUCCESS
+========================================= */
+
+.success-screen {
+
+  display: none;
+
+  text-align: center;
+
+  animation:
+    stepIn .6s ease;
+
+}
+
+
+.success-screen.show {
+
+  display: block;
+
+}
+
+
+.success-symbol {
+
+  width: 80px;
+
+  height: 80px;
+
+  border:
+    1px solid white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin:
+    0 auto 35px;
+
+  font-size: 30px;
+
+}
+
+
+.success-screen h2 {
+
+  font-size:
+    clamp(70px, 14vw, 140px);
+
+  line-height: .8;
+
+  letter-spacing: -7px;
+
+  margin-bottom: 30px;
+
+}
+
+
+.success-screen p {
+
+  color: #777;
+
+  max-width: 500px;
+
+  margin:
+    0 auto 40px;
+
+  line-height: 1.6;
+
+}
+
+
+.submission-card {
+
+  display: inline-flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  border:
+    1px solid #333;
+
+  padding:
+    25px 40px;
+
+  margin-bottom: 30px;
+
+}
+
+
+.submission-card span {
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  color: #666;
+
+}
+
+
+.submission-card strong {
+
+  font-size: 25px;
+
+  letter-spacing: 3px;
+
+}
+
+
+.success-message {
+
+  color: #444;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .container {
+
+    padding-top: 40px;
+
+  }
+
+
+  .hero h1 {
+
+    letter-spacing: -5px;
+
+  }
+
+
+  .step h2 {
+
+    letter-spacing: -3px;
+
+  }
+
+
+  .victim-inputs {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .button-row {
+
+    flex-direction: column-reverse;
+
+  }
+
+
+  .next-button,
+  .submit-button {
+
+    width: 100%;
+
+  }
+
+
+  .back-button {
+
+    padding: 15px;
+
+  }
+
+}
