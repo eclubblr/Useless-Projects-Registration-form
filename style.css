@@ -1,37 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap');
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+:root {
+
+  --paper: #f3e5c7;
+
+  --paper-light: #f8efd9;
+
+  --green: #007d6f;
+
+  --green-dark: #004e47;
+
+  --coral: #e87576;
+
+  --ink: #123e3a;
+
+  --yellow: #e9b846;
+
+  --muted: #887b67;
+
+  --black: #102f2c;
+
+}
+
+
 /* =========================================
    RESET
 ========================================= */
 
 * {
+
   box-sizing: border-box;
+
   margin: 0;
+
   padding: 0;
+
 }
 
 
 html {
+
   scroll-behavior: smooth;
+
 }
 
 
 body {
 
-  min-height: 100vh;
+  background: var(--paper);
 
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      #202020 0%,
-      #0d0d0d 45%,
-      #050505 100%
-    );
-
-  color: #f3f3f3;
+  color: var(--ink);
 
   font-family:
-    Arial,
-    Helvetica,
+    "Space Grotesk",
     sans-serif;
+
+  min-height: 100vh;
 
   overflow-x: hidden;
 
@@ -42,7 +71,9 @@ body {
    BACKGROUND
 ========================================= */
 
-.noise {
+body::before {
+
+  content: "";
 
   position: fixed;
 
@@ -50,57 +81,135 @@ body {
 
   pointer-events: none;
 
-  opacity: 0.04;
-
-  z-index: 100;
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-
-}
-
-
-.grid {
-
-  position: fixed;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.08;
+  opacity: .16;
 
   background-image:
 
-    linear-gradient(
-      rgba(255,255,255,.08) 1px,
-      transparent 1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.08) 1px,
-      transparent 1px
+    radial-gradient(
+      rgba(50,30,10,.3) .6px,
+      transparent .6px
     );
 
-  background-size: 40px 40px;
+  background-size: 5px 5px;
+
+  z-index: 20;
 
 }
 
 
 /* =========================================
-   CONTAINER
+   BLOBS
 ========================================= */
 
-.container {
+.blob {
 
-  width: min(900px, 92%);
+  position: absolute;
+
+  z-index: -1;
+
+  border-radius: 45% 55% 55% 45%;
+
+}
+
+
+.blob-one {
+
+  width: 180px;
+
+  height: 190px;
+
+  background: #77c8b5;
+
+  left: 4%;
+
+  top: 500px;
+
+  transform: rotate(-15deg);
+
+}
+
+
+.blob-two {
+
+  width: 160px;
+
+  height: 190px;
+
+  background: var(--yellow);
+
+  right: 5%;
+
+  top: 440px;
+
+  transform: rotate(20deg);
+
+}
+
+
+.blob-three {
+
+  width: 190px;
+
+  height: 220px;
+
+  background: var(--coral);
+
+  right: 7%;
+
+  top: 800px;
+
+  transform: rotate(-15deg);
+
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+
+  width: min(1000px, 92%);
 
   margin: auto;
 
   padding:
-    70px 0
-    100px;
+    30px 0
+    80px;
+
+}
+
+
+/* =========================================
+   TOP META
+========================================= */
+
+.top-meta {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+
+  color: var(--green);
+
+  letter-spacing: 1px;
+
+}
+
+
+.top-meta small {
+
+  margin-left: 8px;
+
+  color: var(--muted);
 
 }
 
@@ -111,326 +220,462 @@ body {
 
 .hero {
 
-  text-align: center;
+  padding-top: 55px;
 
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 
 }
 
 
-.tiny-label {
+.department-tag {
 
-  font-size: 11px;
+  display: inline-block;
 
-  letter-spacing: 3px;
+  background: var(--green);
 
-  color: #8d8d8d;
+  color: white;
 
-  margin-bottom: 20px;
+  padding: 5px 12px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  transform: rotate(-1deg);
 
 }
 
 
 .hero h1 {
 
+  font-family:
+    "Archivo Black",
+    sans-serif;
+
   font-size:
-    clamp(70px, 15vw, 150px);
+    clamp(75px, 13vw, 145px);
 
   line-height: .78;
 
-  letter-spacing: -8px;
+  letter-spacing: -7px;
 
-  font-weight: 900;
-
-}
-
-
-.hero-description {
-
-  max-width: 520px;
-
-  margin:
-    35px auto 25px;
-
-  color: #999;
-
-  font-size: 15px;
-
-  line-height: 1.6;
+  margin-top: 10px;
 
 }
 
 
-.status {
+.hero h1 span {
 
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  border:
-    1px solid #333;
-
-  padding:
-    9px 15px;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  color: #aaa;
+  display: block;
 
 }
 
 
-.status-dot {
+.green {
 
-  width: 7px;
-
-  height: 7px;
-
-  background: #fff;
-
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 10px #fff;
+  color: var(--green);
 
 }
 
 
-/* =========================================
-   PROGRESS
-========================================= */
+.coral {
 
-.progress-container {
-
-  margin-bottom: 70px;
+  color: var(--coral);
 
 }
 
 
-.progress-top {
+.hero-bottom {
 
   display: flex;
 
   justify-content: space-between;
 
-  margin-bottom: 10px;
+  align-items: center;
 
-  color: #777;
+  margin-top: 35px;
 
-  font-size: 10px;
-
-  letter-spacing: 2px;
+  max-width: 650px;
 
 }
 
 
-.progress-bar {
+.hero-bottom p {
 
-  height: 2px;
+  font-size: 13px;
 
-  background: #292929;
-
-}
-
-
-.progress-fill {
-
-  height: 100%;
-
-  width: 25%;
-
-  background: #fff;
-
-  transition:
-    width .4s ease;
+  line-height: 1.3;
 
 }
 
 
-/* =========================================
-   STEPS
-========================================= */
-
-.step {
-
-  display: none;
-
-  animation:
-    stepIn .45s ease;
-
-}
-
-
-.step.active {
-
-  display: block;
-
-}
-
-
-@keyframes stepIn {
-
-  from {
-
-    opacity: 0;
-
-    transform:
-      translateY(20px);
-
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-
-  }
-
-}
-
-
-.step-number {
-
-  font-size: 12px;
-
-  letter-spacing: 4px;
-
-  color: #555;
-
-  margin-bottom: 20px;
-
-}
-
-
-.step h2 {
-
-  font-size:
-    clamp(45px, 8vw, 90px);
-
-  line-height: .85;
-
-  letter-spacing: -4px;
-
-  margin-bottom: 25px;
-
-}
-
-
-.instruction {
-
-  color: #777;
+.hero-bottom strong {
 
   font-size: 14px;
 
-  line-height: 1.6;
+}
 
-  max-width: 600px;
 
-  margin-bottom: 45px;
+.stamp {
+
+  width: 75px;
+
+  height: 75px;
+
+  border: 1px dashed var(--coral);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 8px;
+
+  color: var(--coral);
+
+  transform: rotate(12deg);
+
+}
+
+
+.prototype-line {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 50px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
+
+  color: var(--muted);
+
+}
+
+
+.prototype-line .line {
+
+  height: 3px;
+
+  flex: 1;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--green) 0 8px,
+      var(--coral) 8px 16px,
+      var(--yellow) 16px 24px
+    );
+
+}
+
+
+.prototype-line strong {
+
+  color: var(--coral);
+
+  font-size: 11px;
 
 }
 
 
 /* =========================================
-   INPUTS
+   FORM WRAPPER
 ========================================= */
 
-.input-wrapper {
+.form-wrapper {
 
   position: relative;
 
-  margin-bottom: 35px;
+  margin-top: 60px;
 
 }
 
 
-label {
+.form-wrapper::after {
 
-  display: block;
+  content: "";
 
-  font-size: 10px;
+  position: absolute;
 
-  letter-spacing: 2px;
+  inset: 10px -8px -10px 8px;
 
-  color: #777;
+  border-radius: 25px;
+
+  background: var(--green-dark);
+
+  z-index: -1;
+
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+
+  position: relative;
+
+  background: var(--paper-light);
+
+  border:
+    1.5px solid var(--green-dark);
+
+  border-radius:
+    25px 25px 30px 30px;
+
+  padding:
+    55px 55px 65px;
+
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form-section {
+
+  display: grid;
+
+  grid-template-columns:
+    45px 1fr;
+
+  gap: 15px;
+
+  padding-bottom: 65px;
+
+  margin-bottom: 60px;
+
+  border-bottom:
+    1px solid rgba(0,80,70,.3);
+
+}
+
+
+.form-section:last-child {
+
+  border-bottom: none;
+
+  margin-bottom: 0;
+
+}
+
+
+.section-number {
+
+  width: 30px;
+
+  height: 30px;
+
+  border:
+    1px solid var(--green);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 9px;
+
+  color: var(--green);
+
+  transform: rotate(-8deg);
+
+}
+
+
+.mini-label {
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: 1px;
+
+  color: var(--muted);
 
   margin-bottom: 10px;
 
 }
 
 
-input[type="text"],
-textarea {
+.section-content h2 {
+
+  font-family:
+    "Archivo Black",
+    sans-serif;
+
+  font-size:
+    clamp(35px, 5vw, 63px);
+
+  line-height: .82;
+
+  letter-spacing: -3px;
+
+  max-width: 650px;
+
+}
+
+
+.section-content h2 span {
+
+  display: block;
+
+}
+
+
+.section-note {
+
+  font-size: 10px;
+
+  color: var(--muted);
+
+  max-width: 430px;
+
+  line-height: 1.5;
+
+  margin:
+    18px 0 30px;
+
+}
+
+
+/* =========================================
+   FIELDS
+========================================= */
+
+.field {
+
+  position: relative;
+
+  margin-top: 25px;
+
+}
+
+
+.field label {
+
+  display: block;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: 1px;
+
+  color: var(--muted);
+
+  margin-bottom: 5px;
+
+}
+
+
+.field input,
+.field textarea {
 
   width: 100%;
 
   border: none;
 
   border-bottom:
-    1px solid #444;
+    1.5px solid var(--green-dark);
 
   background: transparent;
 
-  color: white;
-
-  padding:
-    15px 0;
-
   outline: none;
 
-  font-size: 20px;
+  color: var(--ink);
 
-  font-family: inherit;
+  font-family:
+    "Space Grotesk",
+    sans-serif;
 
-  transition:
-    border .2s ease;
+  font-size: 14px;
 
-}
-
-
-input[type="text"]:focus,
-textarea:focus {
-
-  border-bottom-color: white;
+  padding:
+    8px 0;
 
 }
 
 
-input::placeholder,
-textarea::placeholder {
+.field input:focus,
+.field textarea:focus {
 
-  color: #444;
+  border-bottom-color:
+    var(--coral);
 
 }
 
 
-.input-counter,
-.textarea-counter {
+.field input::placeholder,
+.field textarea::placeholder {
+
+  color: #b1a58e;
+
+}
+
+
+.field-note {
 
   position: absolute;
 
   right: 0;
 
-  bottom: 10px;
+  bottom: 5px;
 
-  font-size: 9px;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  color: #555;
+  font-size: 6px;
 
-  letter-spacing: 1px;
+  color: var(--coral);
 
 }
 
 
-textarea {
+.textarea-field {
 
-  min-height: 200px;
+  position: relative;
+
+}
+
+
+.textarea-field textarea {
+
+  min-height: 150px;
 
   resize: vertical;
 
@@ -439,85 +684,173 @@ textarea {
 }
 
 
-/* =========================================
-   VICTIMS
-========================================= */
+.character-count {
 
-.victim-card {
+  position: absolute;
 
-  border:
-    1px solid #292929;
+  right: 0;
 
-  padding: 25px;
+  bottom: 7px;
 
-  margin-bottom: 15px;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  background:
-    rgba(255,255,255,.015);
+  font-size: 7px;
+
+  color: var(--muted);
 
 }
 
 
-.victim-header {
+/* =========================================
+   VICTIMS
+========================================= */
+
+.victim {
+
+  border:
+    1px solid var(--green);
+
+  border-radius:
+    15px 15px 22px 22px;
+
+  padding: 18px 20px 22px;
+
+  margin-top: 20px;
+
+  background:
+    rgba(255,255,255,.16);
+
+}
+
+
+.victim-top {
 
   display: flex;
 
   justify-content: space-between;
 
-  margin-bottom: 25px;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  color: #777;
+  font-size: 7px;
 
-  font-size: 10px;
+  color: var(--muted);
 
-  letter-spacing: 3px;
+  margin-bottom: 20px;
 
 }
 
 
-.victim-inputs {
+.victim-top span:first-child {
+
+  color: var(--green);
+
+  font-weight: bold;
+
+}
+
+
+.victim-fields {
 
   display: grid;
 
   grid-template-columns:
-    1fr 1fr;
+    1.5fr 1fr;
 
   gap: 25px;
 
 }
 
 
+.victim .field {
+
+  margin-top: 0;
+
+}
+
+
 .add-victim {
 
-  width: 100%;
+  display: block;
 
-  padding: 17px;
+  margin:
+    25px auto 8px;
+
+  border:
+    1px dashed var(--coral);
+
+  border-radius: 50%;
 
   background: transparent;
 
-  border:
-    1px dashed #444;
+  color: var(--coral);
 
-  color: #777;
+  padding:
+    10px 35px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
 
   cursor: pointer;
 
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
   transition: .2s;
-
-  margin-bottom: 35px;
 
 }
 
 
 .add-victim:hover {
 
-  border-color: #888;
+  background: var(--coral);
 
   color: white;
+
+}
+
+
+.tiny-note {
+
+  text-align: center;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 6px;
+
+  color: var(--muted);
+
+}
+
+
+/* =========================================
+   SCRIBBLE
+========================================= */
+
+.scribble {
+
+  display: inline-block;
+
+  color: var(--coral);
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
+
+  border-bottom:
+    1px dashed var(--coral);
+
+  transform:
+    rotate(-3deg);
+
+  margin-top: 25px;
 
 }
 
@@ -529,33 +862,32 @@ textarea {
 .fate-box {
 
   border:
-    1px solid #333;
+    1px solid #d7c8a8;
 
-  padding: 30px;
+  background:
+    #eee2c6;
 
-  margin-bottom: 40px;
+  padding: 18px;
+
+  margin-top: 30px;
 
 }
 
 
-.checkbox-label {
+.fate-label {
 
   display: flex;
 
+  gap: 12px;
+
   align-items: flex-start;
 
-  gap: 15px;
-
   cursor: pointer;
-
-  color: #aaa;
-
-  line-height: 1.5;
 
 }
 
 
-.checkbox-label input {
+.fate-label input {
 
   position: absolute;
 
@@ -564,105 +896,118 @@ textarea {
 }
 
 
-.custom-checkbox {
-
-  flex-shrink: 0;
+.fake-checkbox {
 
   width: 20px;
 
   height: 20px;
 
   border:
-    1px solid #555;
+    1px solid var(--green);
+
+  flex-shrink: 0;
 
   margin-top: 2px;
 
 }
 
 
-.checkbox-label input:checked
-+ .custom-checkbox {
+.fate-label input:checked
++ .fake-checkbox {
 
-  background: white;
+  background: var(--green);
 
   box-shadow:
-    inset 0 0 0 4px #080808;
+    inset 0 0 0 4px #eee2c6;
+
+}
+
+
+.fate-text {
+
+  font-size: 9px;
+
+  line-height: 1.5;
+
+  color: var(--ink);
 
 }
 
 
 /* =========================================
-   BUTTONS
+   SUBMIT
 ========================================= */
 
-.button-row {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-}
-
-
-.next-button,
 .submit-button {
 
-  border: none;
+  width: 100%;
 
-  background: white;
+  margin-top: 25px;
 
-  color: black;
+  padding: 17px;
 
-  padding:
-    17px 25px;
+  border:
+    1.5px solid var(--green-dark);
 
-  font-size: 10px;
+  border-radius:
+    3px 3px 12px 3px;
 
-  font-weight: bold;
-
-  letter-spacing: 2px;
-
-  cursor: pointer;
-
-  transition: .2s;
-
-}
-
-
-.next-button:hover,
-.submit-button:hover {
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 10px 30px rgba(255,255,255,.1);
-
-}
-
-
-.back-button {
-
-  background: transparent;
-
-  color: #666;
-
-  border: none;
-
-  cursor: pointer;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-}
-
-
-.back-button:hover {
+  background: var(--green);
 
   color: white;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 var(--green-dark);
+
+  transition: .15s;
+
+}
+
+
+.submit-button:hover {
+
+  transform: translateY(2px);
+
+  box-shadow:
+    0 3px 0 var(--green-dark);
+
+}
+
+
+.submit-button:disabled {
+
+  opacity: .6;
+
+  cursor: wait;
+
+}
+
+
+.submit-note {
+
+  text-align: center;
+
+  margin-top: 13px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 6px;
+
+  color: var(--muted);
 
 }
 
@@ -671,122 +1016,166 @@ textarea {
    SUCCESS
 ========================================= */
 
-.success-screen {
+.success {
 
   display: none;
 
   text-align: center;
 
-  animation:
-    stepIn .6s ease;
+  padding: 70px 20px;
 
 }
 
 
-.success-screen.show {
+.success.show {
 
   display: block;
 
 }
 
 
-.success-symbol {
+.success-stamp {
 
-  width: 80px;
-
-  height: 80px;
+  display: inline-block;
 
   border:
-    1px solid white;
+    1px dashed var(--coral);
 
-  display: flex;
+  color: var(--coral);
 
-  align-items: center;
+  padding: 15px 20px;
 
-  justify-content: center;
+  transform: rotate(-8deg);
 
-  margin:
-    0 auto 35px;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  font-size: 30px;
+  font-size: 10px;
+
+  margin-bottom: 35px;
 
 }
 
 
-.success-screen h2 {
+.success h2 {
+
+  font-family:
+    "Archivo Black",
+    sans-serif;
 
   font-size:
-    clamp(70px, 14vw, 140px);
+    clamp(65px, 12vw, 120px);
 
   line-height: .8;
 
-  letter-spacing: -7px;
-
-  margin-bottom: 30px;
+  letter-spacing: -5px;
 
 }
 
 
-.success-screen p {
+.success h2 span {
 
-  color: #777;
+  display: block;
 
-  max-width: 500px;
+}
+
+
+.success p {
+
+  max-width: 450px;
 
   margin:
-    0 auto 40px;
+    25px auto 35px;
+
+  color: var(--muted);
+
+  font-size: 12px;
 
   line-height: 1.6;
 
 }
 
 
-.submission-card {
+.submission-id {
 
   display: inline-flex;
 
   flex-direction: column;
 
-  gap: 10px;
-
-  border:
-    1px solid #333;
+  gap: 8px;
 
   padding:
-    25px 40px;
+    18px 35px;
 
-  margin-bottom: 30px;
-
-}
-
-
-.submission-card span {
-
-  font-size: 9px;
-
-  letter-spacing: 3px;
-
-  color: #666;
+  border:
+    1px solid var(--green);
 
 }
 
 
-.submission-card strong {
+.submission-id span {
 
-  font-size: 25px;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  letter-spacing: 3px;
+  font-size: 7px;
+
+  color: var(--muted);
 
 }
 
 
-.success-message {
+.submission-id strong {
 
-  color: #444;
+  font-family:
+    "DM Mono",
+    monospace;
 
-  font-size: 11px;
+  font-size: 20px;
 
-  letter-spacing: 2px;
+  color: var(--green);
+
+}
+
+
+.success-footer {
+
+  margin-top: 30px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 7px;
+
+  color: var(--muted);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 45px;
+
+  font-family:
+    "DM Mono",
+    monospace;
+
+  font-size: 6px;
+
+  color: var(--muted);
 
 }
 
@@ -795,9 +1184,16 @@ textarea {
    MOBILE
 ========================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
-  .container {
+  .page {
+
+    width: 90%;
+
+  }
+
+
+  .hero {
 
     padding-top: 40px;
 
@@ -811,38 +1207,86 @@ textarea {
   }
 
 
-  .step h2 {
+  .hero-bottom {
 
-    letter-spacing: -3px;
+    align-items: flex-start;
 
   }
 
 
-  .victim-inputs {
+  .stamp {
+
+    width: 60px;
+
+    height: 60px;
+
+  }
+
+
+  .form-card {
+
+    padding:
+      35px 22px 45px;
+
+    border-radius: 20px;
+
+  }
+
+
+  .form-section {
+
+    grid-template-columns:
+      30px 1fr;
+
+    gap: 8px;
+
+  }
+
+
+  .section-number {
+
+    width: 25px;
+
+    height: 25px;
+
+  }
+
+
+  .section-content h2 {
+
+    letter-spacing: -2px;
+
+  }
+
+
+  .victim-fields {
 
     grid-template-columns: 1fr;
 
-  }
-
-
-  .button-row {
-
-    flex-direction: column-reverse;
+    gap: 15px;
 
   }
 
 
-  .next-button,
-  .submit-button {
+  .field-note {
 
-    width: 100%;
+    display: none;
 
   }
 
 
-  .back-button {
+  footer {
 
-    padding: 15px;
+    flex-direction: column;
+
+    text-align: center;
+
+  }
+
+
+  .blob {
+
+    opacity: .65;
 
   }
 
